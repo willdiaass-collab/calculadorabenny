@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Personalização de Veículos</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <style>
+    /* Adicione seu estilo personalizado aqui, se necessário */
+  </style>
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Calculadora de Personalização de Veículos</h1>
+    
+    <!-- Opções de Freios -->
+    <div class="form-group">
+      <label for="freios">Freios:</label>
+      <select class="form-control" id="freios">
+        <option value="0">Padrão</option>
+        <option value="1500">Freios Esportivos (+R$1,500)</option>
+        <option value="3000">Freios de Alta Performance (+R$3,000)</option>
+      </select>
+    </div>
+
+    <!-- Outras Opções -->
+    <div class="form-group">
+      <label for="transmissao">Transmissão:</label>
+      <select class="form-control" id="transmissao">
+        <option value="0">Padrão</option>
+        <option value="2000">Transmissão Automática (+R$2,000)</option>
+        <option value="3500">Transmissão Manual Esportiva (+R$3,500)</option>
+      </select>
+    </div>
+
+    <!-- Adicione mais opções conforme necessário -->
+
+    <!-- Acessórios -->
+    <div class="form-group">
+      <label>Acessórios:</label>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="acessorioAerofolio" value="3000">
+        <label class="form-check-label" for="acessorioAerofolio">Aerofólio (+R$3,000)</label>
+      </div>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="acessorioParaChoqueDianteiro" value="3000">
+        <label class="form-check-label" for="acessorioParaChoqueDianteiro">Para-choque Dianteiro (+R$3,000)</label>
+      </div>
+      <!-- Adicione os outros acessórios aqui -->
+    </div>
+
+    <!-- Botão de Calcular -->
+    <button type="button" class="btn btn-primary" onclick="calcularTotal()">Calcular Total</button>
+
+    <!-- Resultado -->
+    <div class="mt-3">
+      <h3>Total: R$ <span id="resultado">0</span></h3>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <script>
+    function calcularTotal() {
+      // Obter os valores selecionados para freios e transmissão
+      var freios = parseInt(document.getElementById('freios').value);
+      var transmissao = parseInt(document.getElementById('transmissao').value);
+
+      // Obter os valores dos acessórios selecionados
+      var acessorios = 0;
+      var checkboxes = document.querySelectorAll('input[type=checkbox]:checked');
+      checkboxes.forEach(function(checkbox) {
+        acessorios += parseInt(checkbox.value);
+      });
+
+      // Calcular o total
+      var total = freios + transmissao + acessorios;
+
+      // Exibir o resultado
+      document.getElementById('resultado').textContent = total;
+    }
+  </script>
+</body>
+</html>
